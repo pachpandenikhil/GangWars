@@ -22,42 +22,20 @@ public class HomeworkTester {
 	@Test
 	public void testHomework() {
 		
-		Map<Integer, Integer> faultyTestCases = new HashMap<>();
-		//faultyTestCases.put(0, 0);
-		//aultyTestCases.put(449, 449);
-		//faultyTestCases.put(792, 792);
-		//faultyTestCases.put(821, 821);
-		//faultyTestCases.put(1336, 1336);
-		//faultyTestCases.put(1371, 1371);
-		//faultyTestCases.put(2767, 2767);
-		//faultyTestCases.put(2825, 2825);
-		
-		
 		long startTime = System.currentTimeMillis();
 		int testCases = 100;
 		int startTestCase = 0;
 		for(int i = startTestCase; i < testCases; i++) {
-			if(faultyTestCases.containsKey(i)) {
-				System.out.println("Skipping test case : " + i);
-				continue;
-			}
-			File testcaseInputFile = new File("C:\\Users\\pachp\\Google Drive\\workspace\\AI_HW_2\\bin\\" + i + ".in");
-			File inputFile = new File("C:\\Users\\pachp\\Google Drive\\workspace\\AI_HW_2\\bin\\input.txt");
+			File testcaseInputFile = new File("C:\\GangWars\\bin\\" + i + ".in");
+			File inputFile = new File("C:\\GangWars\\bin\\input.txt");
 			if(testcaseInputFile.renameTo(inputFile)){
 				homework.main(null);
-				File testcaseOutputFile = new File("D:\\AI\\Homeworks\\Homework2\\testcases\\" + i + ".out");
-				File outputFile = new File("C:\\Users\\pachp\\Google Drive\\workspace\\AI_HW_2\\bin\\output.txt");
+				File testcaseOutputFile = new File("C:\\GangWars\\testing\\testcases1\\" + i + ".out");
+				File outputFile = new File("C:\\GangWars\\bin\\output.txt");
 				try {
 					String expectedOutput = readFile(testcaseOutputFile.getAbsolutePath(), Charset.defaultCharset());
 					String actualOutput = readFile(outputFile.getAbsolutePath(), Charset.defaultCharset());
 					assertThat("TestCase "+ i + " failed!",expectedOutput, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(actualOutput));
-					/*if(FileUtils.contentEquals(testcaseOutputFile, outputFile)) {
-						
-					}
-					else {
-						assertTrue("TestCase " + i + " failed!", false);
-					}*/
-					
 				} catch (IOException e) {
 					assertTrue("Exception occured : " + e.getMessage(), false);
 				}
@@ -65,11 +43,9 @@ public class HomeworkTester {
 					inputFile.renameTo(testcaseInputFile);
 				}
 				
-				
 			} else {
 				assertTrue("Failed to rename file!", false);
 			}
-			//System.out.println("Done");
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println("That took " + (endTime - startTime) + " milliseconds");
