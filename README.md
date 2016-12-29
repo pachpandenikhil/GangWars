@@ -1,5 +1,6 @@
 # GangWars
-AI game playing agent based on minimax algorithm and alpha-beta pruning
+AI game playing agent based on minimax algorithm and alpha-beta pruning.
+<br/>
 <br/>
 •	AI game playing agent for a two-player strategy board game with N x N squares.<br/>
 •	Each square has a score associated with it and the player with the maximum score at the end of the game (all squares conquered by either player) wins the game.<br/>
